@@ -12,6 +12,8 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+最初節系
+![image](https://user-images.githubusercontent.com/17827803/80169620-ea86ce00-8620-11ea-8d05-8e7b0a3cb99d.png)
 
 * Database initialization
 
