@@ -52,6 +52,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem "fablicop", require: false
+  gem 'rails-i18n', '~> 5.1'
 end
 
 group :test do
