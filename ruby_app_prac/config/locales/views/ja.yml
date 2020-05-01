@@ -1,0 +1,10 @@
+ja:
+  tasks:
+    index:
+      title: 'Task List'
+    show:
+      title: 'Task Contents'
+    edit:
+      title: 'Task Edit'
+    new:
+      title: 'Create Task'
