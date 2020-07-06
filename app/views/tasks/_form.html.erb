@@ -1,0 +1,62 @@
+<%= form_with(model: task, local: true) do |form| %>
+
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2>次を確認してください</h2>
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class:'form-control', style:'width:30%;' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_field :content, class:'form-control', style:'width:40%;' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.map{|k, _|  [Task.human_attribute_enum_value(:priority, k), k]}.to_h, {}, class:'form-control', style:'width:40%;' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.map{|k, _|  [Task.human_attribute_enum_value(:status, k), k]}.to_h, {}, class:'form-control', style:'width:40%;' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :end_time %>
+    <%= form.datetime_select :end_time, {}, class:'form-control bootstrap-date-only-width' %>
+  </div>
+
+
+<div class="article-tags-field">
+      <%= form.label :label_list %>
+      <%= form.text_field :label_list, value: @task.label_list.join(',') %>
+</div>
+
+
+  <div class="form-group">
+    <%= form.submit :class => 'btn btn-primary' %>
+    <%= link_to t('.back'), tasks_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#task_label_list').tagit({
+      availableTags: <%= @available_labels ||= [] %>,
+      fieldName:   'task[label_list]',
+      singleField: true,
+      animate: false
+    });
+  });
+</script>

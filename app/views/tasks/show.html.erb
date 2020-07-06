@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class='display-4'><%= t('.page_title') %></h1>
+
+<p>
+  <div class="form-group h4"><%= t('.user') %></div>
+  <%= current_user.name.upcase %>
+</p>
+
+<p>
+  <div class="form-group h4"><%= t('.title') %> </div>
+  <%= @task.title %>
+</p>
+
+<p>
+  <div class="form-group h4"><%= t('.content') %> </div>
+  <%= @task.content %>
+</p>
+
+<p>
+  <div class="form-group h4"><%= t('.priority') %> </div>
+  <%= @task.human_attribute_enum(:priority) %>
+</p>
+
+<p>
+  <div class="form-group h4"><%= t('.status') %> </div>
+  <%= @task.human_attribute_enum(:status) %>
+</p>
+
+<p>
+  <div class="form-group h4"><%= t('.end_time') %> </div>
+  <%= @task.end_time %>
+</p>
+
+<div class="article-tags-field">
+  <label class="control-label required" for="task_label_list"><%= t('.label_list') %></label>
+  <input class="form-control" readonly type="text" value="<%= @task.label_list.join(',') %>" id="task_label_list" />
+</div>
+
+<%= link_to t('.back'), tasks_path, class: 'btn btn-secondary' %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#task_label_list").tagit({
+      readOnly: true
+    });
+  });
+</script>
