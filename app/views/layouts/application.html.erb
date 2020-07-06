@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KTask</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+
+    <% if logged_in? %>
+      <div style='text-align:right'>
+        <%= link_to 'Home', index_path, class:'btn btn-primary' %>
+        <%= link_to t('.user_info'), admin_users_path, class:'btn btn-outline-danger' if current_user&.admin?%>
+        <%= link_to t('.logout'), session_path(current_user.id), method: :delete, class:'btn btn-outline-info' %>
+      </div>
+    <% end %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
